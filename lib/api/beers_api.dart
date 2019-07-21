@@ -15,7 +15,6 @@ class BeersApi {
         .then(json.decode)
         .then((beers) =>
             beers.forEach((model) => list.add(BeerModel.fromJson(model))));
-
     return list;
 
     //Iterable decodeList = json.decode(response);

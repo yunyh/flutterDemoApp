@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/api/beers_api.dart';
-import 'package:flutter_app/bloc/beers_bloc.dart';
 
-class BeersBlocProvider extends InheritedWidget {
-  final BeersBloc beersBloc;
+import 'bloc.dart';
+
+class BlocProvider<T extends AbstractBloc> extends InheritedWidget {
+  final T blocModel;
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
 
-  static BeersBloc of(BuildContext context) =>
-      (context.inheritFromWidgetOfExactType(BeersBlocProvider)
-              as BeersBlocProvider)
-          .beersBloc;
+  static T of<T extends AbstractBloc>(BuildContext context) =>
+      (context.inheritFromWidgetOfExactType(_typeOf<BlocProvider<T>>())
+      as BlocProvider<T>)
+          .blocModel;
 
-  BeersBlocProvider({Key key, BeersBloc beersBloc, Widget child})
-      : this.beersBloc = beersBloc ?? BeersBloc(BeersApi()),
-        super(child: child, key: key);
+  static Type _typeOf<P>() => P;
+
+  BlocProvider({Key key, @required T bloc, Widget child})
+      : this.blocModel = bloc,
+        super(key: key, child: child);
 }

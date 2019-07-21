@@ -3,17 +3,13 @@ import 'package:flutter_app/view/beer_list_first_page.dart';
 import 'package:flutter_app/view/beer_list_second_page.dart';
 import 'package:flutter_app/view/bottom_navigators.dart';
 
-import 'bloc/beers_bloc_provider.dart';
-import 'view/beer_detail_page.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BeersBlocProvider(
-        child: MaterialApp(
+    return MaterialApp(
       title: 'Poke App',
       theme: ThemeData(
           primarySwatch: Colors.cyan,
@@ -21,7 +17,7 @@ class MyApp extends StatelessWidget {
           primaryColorDark: Colors.cyanAccent),
       home: MyHomePage(title: 'Beer List Demo App'),
       debugShowCheckedModeBanner: false,
-    ));
+    );
   }
 }
 
@@ -68,10 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => BeerDetailPage()));
-          // pokeHub = null;
-          // fetchData();
         },
         backgroundColor: Colors.cyan,
         child: Icon(Icons.refresh),
